@@ -2,12 +2,17 @@ package ir.ac.kntu.gamePlay;
 
 import ir.ac.kntu.graghic.Main;
 import ir.ac.kntu.units.allies.*;
+import ir.ac.kntu.units.items.Container;
+import ir.ac.kntu.units.items.Item;
+import ir.ac.kntu.units.items.Truck;
+import ir.ac.kntu.units.items.Van;
 
 import java.util.LinkedList;
 
 public class Initializer {
 
     public static LinkedList<AllySoldier> heroes = new LinkedList<>();
+    public static LinkedList<Item> items = new LinkedList<>();
 
     public static void Initialize(){
 
@@ -24,10 +29,17 @@ public class Initializer {
         heroes.add(SoheiDojima.getSingleInstance());
         heroes.add(TaigaSaejima.getSingleInstance());
 
+        items.add(Van.getSingleInstance());
+        items.add(Container.getSingleInstance());
+        items.add(Truck.getSingleInstance());
+
         Player.getSingleInstance().getPlayerStack()[0]= JiroKawara.getSingleInstance();
         Player.getSingleInstance().getPlayerStack()[1]= RyoTakashima.getSingleInstance();
         Player.getSingleInstance().getPlayerStack()[2]= OsamuKashiwagi.getSingleInstance();
         Player.getSingleInstance().getPlayerStack()[3]= MakotoDate.getSingleInstance();
+        Player.getSingleInstance().getPlayerStack()[4]= TaigaSaejima.getSingleInstance();
+
+        Player.getSingleInstance().setMoney(500);
     }
 
     public static void mainMenu(){

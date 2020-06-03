@@ -1,6 +1,6 @@
 package ir.ac.kntu.units;
 
-public class Soldier extends Unit{
+public abstract class Soldier extends Unit{
 
     protected int damage;
     protected int attackRange;

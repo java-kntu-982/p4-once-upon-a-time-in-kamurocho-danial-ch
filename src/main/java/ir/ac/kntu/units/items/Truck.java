@@ -1,5 +1,8 @@
 package ir.ac.kntu.units.items;
 
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
+
 public class Truck extends Item {
 
     private static Truck singleInstance = null;
@@ -12,6 +15,10 @@ public class Truck extends Item {
     }
 
     private Truck() {
-        this.durability=5000;
+        this.health=5000;
+        this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\truck.jpg"));
+        this.getModel().setFill(new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\truck-model.jpg")));
+        this.getModel().setHeight(125);
+        lvlUp();
     }
 }

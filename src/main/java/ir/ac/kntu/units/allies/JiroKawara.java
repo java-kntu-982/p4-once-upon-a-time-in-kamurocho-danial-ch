@@ -22,6 +22,6 @@ public class JiroKawara extends AllySoldier {
         this.health = 5500;
         this.fieldOfView = 3;
         this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\jiro.jpg"));
-
+        lvlUp();
     }
 }

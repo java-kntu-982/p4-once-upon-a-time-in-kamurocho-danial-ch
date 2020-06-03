@@ -21,6 +21,6 @@ public class OsamuKashiwagi extends AllySoldier {
         this.health = 4000;
         this.fieldOfView = 2;
         this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\osamu.jpg"));
-
+        lvlUp();
     }
 }

@@ -1,15 +1,17 @@
 package ir.ac.kntu.gamePlay;
 
 import ir.ac.kntu.graghic.Design;
+import ir.ac.kntu.graghic.EventHandling;
 import ir.ac.kntu.graghic.Main;
+import ir.ac.kntu.units.allies.AllySoldier;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 import java.util.LinkedList;
 
 public class OrganizeSoldier {
 
-    public static Button backButton = new Button("Back");
     public static Rectangle heroPoolRectangle = new Rectangle();
     public static Rectangle heroStackRectangle = new Rectangle();
     public static LinkedList<Rectangle> heroPoolRec = new LinkedList<>();
@@ -26,18 +28,19 @@ public class OrganizeSoldier {
         }
 
         for(int i=0;i<8;i++){
+            Rectangle rectangle = new Rectangle();
             if(Player.getSingleInstance().getPlayerStack()[i] != null){
-                Rectangle rectangle = new Rectangle();
                 rectangle.setFill(Player.getSingleInstance().getPlayerStack()[i].getImage());
-                stackHeroes.add(rectangle);
             }
+            stackHeroes.add(rectangle);
         }
 
     }
 
     public static void showOrganization(){
         Design.rectangleDesign();
-        Main.root.getChildren().add(backButton);
+        EventHandling.organizationEventHandling();
+        Main.backButton.setVisible(true);
         Main.root.getChildren().add(heroPoolRectangle);
         Main.root.getChildren().add(heroStackRectangle);
 
@@ -51,4 +54,29 @@ public class OrganizeSoldier {
         }
     }
 
+    public static boolean checkHeroExistInStack(int soldierNumber){
+        AllySoldier soldier = Initializer.heroes.get(soldierNumber);
+        boolean found = false;
+        for(int i=0;i<8;i++){
+            if(Player.getSingleInstance().getPlayerStack()[i] != null){
+                if(soldier.equals(Player.getSingleInstance().getPlayerStack()[i])){
+                    found = true;
+                }
+            }
+        }
+        return found;
+    }
+
+    public static void shiftHeroesInStack(int startFrom){
+        for(int i=startFrom;i<7;i++){
+            if(Player.getSingleInstance().getPlayerStack()[i+1] != null){
+                Player.getSingleInstance().getPlayerStack()[i] = Player.getSingleInstance().getPlayerStack()[i+1];
+                stackHeroes.get(i).setFill(Player.getSingleInstance().getPlayerStack()[i+1].getImage());
+            } else {
+                Player.getSingleInstance().getPlayerStack()[i] = null;
+                stackHeroes.get(i).setFill(Color.BLACK);
+                break;
+            }
+        }
+    }
 }

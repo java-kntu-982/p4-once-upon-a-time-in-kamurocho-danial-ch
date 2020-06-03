@@ -11,6 +11,6 @@ public class BossLvl1 extends EnemySoldier {
         this.speed=2;
         this.model.setWidth(25);
         this.model.setHeight(25);
-        this.model.setFill(Color.BLACK);
+        this.model.setFill(Color.PERU);
     }
 }

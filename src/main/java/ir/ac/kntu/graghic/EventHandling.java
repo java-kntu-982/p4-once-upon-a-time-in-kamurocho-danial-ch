@@ -1,9 +1,8 @@
 package ir.ac.kntu.graghic;
 
-import ir.ac.kntu.gamePlay.Initializer;
-import ir.ac.kntu.gamePlay.Mission;
-import ir.ac.kntu.gamePlay.OrganizeSoldier;
-import ir.ac.kntu.gamePlay.Player;
+import ir.ac.kntu.gamePlay.*;
+import ir.ac.kntu.units.allies.AllySoldier;
+import ir.ac.kntu.units.items.Item;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -18,6 +17,7 @@ public class EventHandling {
         Main.missionButton.setOnMouseExited(mouseEvent -> Main.missionButton.setStyle("-fx-background-color: #404040"));
         Main.missionButton.setOnMouseClicked(mouseEvent -> {
             menuButtonClick();
+            Main.backButton.setVisible(true);
             Main.mission1Button.setVisible(true);
             if(Player.getSingleInstance().isLvl1Passed()){
                 Main.mission2Button.setVisible(true);
@@ -34,9 +34,19 @@ public class EventHandling {
 
         Main.trainButton.setOnMouseEntered(mouseEvent -> Main.trainButton.setStyle("-fx-background-color: #357092"));
         Main.trainButton.setOnMouseExited(mouseEvent -> Main.trainButton.setStyle("-fx-background-color: #404040"));
+        Main.trainButton.setOnMouseClicked(mouseEvent -> {
+            UnitUpgrade.upgradeType=1;
+            menuButtonClick();
+            UnitUpgrade.soldierUpgrade();
+        });
 
         Main.fortifyHQButton.setOnMouseEntered(mouseEvent -> Main.fortifyHQButton.setStyle("-fx-background-color: #357092"));
         Main.fortifyHQButton.setOnMouseExited(mouseEvent -> Main.fortifyHQButton.setStyle("-fx-background-color: #404040"));
+        Main.fortifyHQButton.setOnMouseClicked(mouseEvent -> {
+            UnitUpgrade.upgradeType=2;
+            menuButtonClick();
+            UnitUpgrade.itemUpgrade();
+        });
 
         Main.exitButton.setOnMouseEntered(mouseEvent -> Main.exitButton.setStyle("-fx-background-color: #357092"));
         Main.exitButton.setOnMouseExited(mouseEvent -> Main.exitButton.setStyle("-fx-background-color: #404040"));
@@ -56,10 +66,13 @@ public class EventHandling {
             Mission.preparation(2,1);
         });
 
-        OrganizeSoldier.backButton.setOnMouseEntered(mouseEvent -> OrganizeSoldier.backButton.setStyle("-fx-background-color: #357092"));
-        OrganizeSoldier.backButton.setOnMouseExited(mouseEvent -> OrganizeSoldier.backButton.setStyle("-fx-background-color: #404040"));
-        OrganizeSoldier.backButton.setOnMouseClicked(mouseEvent -> {
-            Main.root.getChildren().remove(OrganizeSoldier.backButton);
+        Main.backButton.setOnMouseEntered(mouseEvent -> Main.backButton.setStyle("-fx-background-color: #357092"));
+        Main.backButton.setOnMouseExited(mouseEvent -> Main.backButton.setStyle("-fx-background-color: #404040"));
+        Main.backButton.setOnMouseClicked(mouseEvent -> {
+            Main.backButton.setVisible(false);
+            Main.mission1Button.setVisible(false);
+            Main.mission2Button.setVisible(false);
+            Main.upgradeButton.setVisible(false);
             Main.root.getChildren().remove(OrganizeSoldier.heroPoolRectangle);
             Main.root.getChildren().remove(OrganizeSoldier.heroStackRectangle);
             for (Rectangle rectangle:
@@ -70,6 +83,22 @@ public class EventHandling {
                     OrganizeSoldier.stackHeroes) {
                 Main.root.getChildren().remove(rectangle);
             }
+
+            Main.root.getChildren().remove(UnitUpgrade.heroPoolRectangle);
+            for (Rectangle rectangle:
+                    UnitUpgrade.heroPoolRec) {
+                Main.root.getChildren().remove(rectangle);
+            }
+            Main.root.getChildren().remove(UnitUpgrade.chosenHero);
+            Main.root.getChildren().remove(UnitUpgrade.info);
+
+            Main.root.getChildren().remove(UnitUpgrade.itemPoolRectangle);
+            for (Rectangle rectangle:
+                    UnitUpgrade.itemPoolRec) {
+                Main.root.getChildren().remove(rectangle);
+            }
+            Main.root.getChildren().remove(UnitUpgrade.chosenItem);
+
             Initializer.mainMenu();
         });
     }
@@ -90,16 +119,95 @@ public class EventHandling {
         });
 
         Main.scene.addEventFilter(MouseEvent.MOUSE_CLICKED,mouseEvent -> {
-            Player.getSingleInstance().getPlayerStack()[Mission.chosenTarget].getModel().setCenterX(mouseEvent.getX());
-            Player.getSingleInstance().getPlayerStack()[Mission.chosenTarget].getModel().setCenterY(mouseEvent.getY());
+            if(Player.getSingleInstance().getPlayerStack()[Mission.chosenTarget] != null){
+                Player.getSingleInstance().getPlayerStack()[Mission.chosenTarget].getModel().setCenterX(mouseEvent.getX());
+                Player.getSingleInstance().getPlayerStack()[Mission.chosenTarget].getModel().setCenterY(mouseEvent.getY());
+            }
+        });
+    }
+
+    public static void organizationEventHandling(){
+
+        for(int i=0;i<OrganizeSoldier.heroPoolRec.size();i++){
+            int finalI = i;
+            OrganizeSoldier.heroPoolRec.get(i).setOnMouseClicked(mouseEvent -> {
+                if (!OrganizeSoldier.checkHeroExistInStack(finalI)) {
+                    for (int j = 0; j < 8; j++) {
+                        if (Player.getSingleInstance().getPlayerStack()[j] == null) {
+                            Player.getSingleInstance().getPlayerStack()[j] = Initializer.heroes.get(finalI);
+                            OrganizeSoldier.stackHeroes.get(j).setFill(Initializer.heroes.get(finalI).getImage());
+                            break;
+                        }
+                    }
+                }
+            });
+        }
+
+        for(int i=0;i<OrganizeSoldier.stackHeroes.size();i++){
+            int finalI = i;
+            OrganizeSoldier.stackHeroes.get(i).setOnMouseClicked(mouseEvent -> {
+                if(Player.getSingleInstance().getPlayerStack()[finalI] != null){
+                    OrganizeSoldier.shiftHeroesInStack(finalI);
+                }
+            });
+        }
+    }
+
+    public static void upgradeHeroEventHandling(){
+        for(int i=0;i<UnitUpgrade.heroPoolRec.size();i++){
+            int finalI = i;
+            UnitUpgrade.heroPoolRec.get(i).setOnMouseClicked(mouseEvent -> {
+                UnitUpgrade.heroNumber = finalI;
+                UnitUpgrade.chosenHero.setFill(UnitUpgrade.heroPoolRec.get(finalI).getFill());
+                UnitUpgrade.setInfo();
+            });
+        }
+        upgradeButtonClick();
+    }
+
+    public static void upgradeItemEventHandling(){
+        for(int i=0;i<UnitUpgrade.itemPoolRec.size();i++){
+            int finalI = i;
+            UnitUpgrade.itemPoolRec.get(i).setOnMouseClicked(mouseEvent -> {
+                UnitUpgrade.itemNumber = finalI;
+                UnitUpgrade.chosenItem.setFill(UnitUpgrade.itemPoolRec.get(finalI).getFill());
+                UnitUpgrade.setInfo();
+            });
+        }
+        upgradeButtonClick();
+    }
+    public static void upgradeButtonClick(){
+
+        Main.upgradeButton.setOnMouseClicked(mouseEvent -> {
+            if(UnitUpgrade.upgradeType==1){
+                AllySoldier hero = Initializer.heroes.get(UnitUpgrade.heroNumber);
+                int cost = (int)(150*Math.pow(1.2,hero.getLevel()-1));
+                if(Player.getSingleInstance().getMoney() >= cost){
+                    Player.getSingleInstance().setMoney(Player.getSingleInstance().getMoney()-cost);
+                    hero.setLevel(hero.getLevel()+1);
+                    hero.lvlUp();
+                    UnitUpgrade.setInfo();
+                }
+            } else if(UnitUpgrade.upgradeType==2){
+                Item item = Initializer.items.get(UnitUpgrade.itemNumber);
+                int cost = (int)(150*Math.pow(1.2,item.getLevel()-1));
+                if(Player.getSingleInstance().getMoney() >= cost){
+                    Player.getSingleInstance().setMoney(Player.getSingleInstance().getMoney()-cost);
+                    item.setLevel(item.getLevel()+1);
+                    item.lvlUp();
+                    UnitUpgrade.setInfo();
+                }
+            }
         });
     }
 
     public static void menuButtonClick(){
+        Main.backButton.setVisible(false);
         Main.missionButton.setVisible(false);
         Main.organizationButton.setVisible(false);
         Main.trainButton.setVisible(false);
         Main.fortifyHQButton.setVisible(false);
         Main.exitButton.setVisible(false);
     }
+
 }

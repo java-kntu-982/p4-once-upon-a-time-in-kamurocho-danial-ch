@@ -21,6 +21,6 @@ public class SoheiDojima extends AllySoldier {
         this.health = 3000;
         this.fieldOfView = 1;
         this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\sohei.jpg"));
-
+        lvlUp();
     }
 }

@@ -2,35 +2,19 @@ package ir.ac.kntu.graghic;
 
 import ir.ac.kntu.gamePlay.Initializer;
 import ir.ac.kntu.gamePlay.OrganizeSoldier;
-import javafx.animation.*;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.scene.*;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.scene.SceneAntialiasing;
 import javafx.scene.control.Button;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-import javafx.util.Duration;
 
-import javax.sound.sampled.AudioInputStream;
-import java.beans.EventHandler;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class Main extends Application {
 
@@ -43,8 +27,10 @@ public class Main extends Application {
     public static Button exitButton = new Button("Exit");
     public static Button mission1Button = new Button("Mission 1");
     public static Button mission2Button = new Button("Mission 2");
-    public static Image background = new Image("file:C:/Users/Asus/Desktop/projects/Java/p4-once-upon-a-time-in-kamurocho-danial-ch/images/applicationImage.jpg");
-    public static ImageView imageView = new ImageView(background);
+    public static Button backButton = new Button("Back");
+    public static Button upgradeButton = new Button("Upgrade");
+    public static ImageView menuBg = new ImageView(new Image("file:C:/Users/Asus/Desktop/projects/Java/p4-once-upon-a-time-in-kamurocho-danial-ch/images/applicationImage.jpg"));
+    public static ImageView inGameBg = new ImageView(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\gameBackgroundImage.jpg"));
     static final String musicFile = "C:/Users/Asus/Desktop/projects/Java/p4-once-upon-a-time-in-kamurocho-danial-ch/sounds/backgound sound.mp3";
     public static javafx.scene.media.Media sound = new Media(new File(musicFile).toURI().toString());
     public static MediaPlayer mediaPlayer = new MediaPlayer(sound);
@@ -57,13 +43,9 @@ public class Main extends Application {
 
         mediaPlayer.play();
 
-        Initializer.Initialize();
-        Design.designButtons();
-        EventHandling.buttonEventHandling();
-        OrganizeSoldier.organize();
-        Design.rectangleDesign();
-
-        root.getChildren().addAll(imageView);
+        root.getChildren().add(menuBg);
+        root.getChildren().add(inGameBg);
+        inGameBg.setVisible(false);
         root.getChildren().add(missionButton);
         root.getChildren().add(organizationButton);
         root.getChildren().add(trainButton);
@@ -71,6 +53,17 @@ public class Main extends Application {
         root.getChildren().add(exitButton);
         root.getChildren().add(mission1Button);
         root.getChildren().add(mission2Button);
+        root.getChildren().add(backButton);
+        root.getChildren().add(upgradeButton);
+        backButton.setVisible(false);
+        upgradeButton.setVisible(false);
+
+        Initializer.Initialize();
+        Design.designButtons();
+        EventHandling.buttonEventHandling();
+        OrganizeSoldier.organize();
+        Design.rectangleDesign();
+        Design.moneyDisplay();
 
 
         stage.show();

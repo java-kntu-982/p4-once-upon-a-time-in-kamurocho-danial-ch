@@ -2,11 +2,11 @@ package ir.ac.kntu.units.items;
 
 import ir.ac.kntu.units.Unit;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class Item extends Unit {
-
-    protected int durability;
+public abstract class Item extends Unit {
+    protected ImagePattern image;
     protected Rectangle model;
 
     public Item() {
@@ -16,12 +16,8 @@ public class Item extends Unit {
         model.setFill(Color.GREEN);
     }
 
-    public int getDurability() {
-        return durability;
-    }
-
-    public void setDurability(int durability) {
-        this.durability = durability;
+    public void lvlUp(){
+        this.setHealth((int)(this.getHealth()*Math.pow(1.05,this.getLevel()-1)));
     }
 
     public Rectangle getModel() {
@@ -30,5 +26,13 @@ public class Item extends Unit {
 
     public void setModel(Rectangle model) {
         this.model = model;
+    }
+
+    public ImagePattern getImage() {
+        return image;
+    }
+
+    public void setImage(ImagePattern image) {
+        this.image = image;
     }
 }

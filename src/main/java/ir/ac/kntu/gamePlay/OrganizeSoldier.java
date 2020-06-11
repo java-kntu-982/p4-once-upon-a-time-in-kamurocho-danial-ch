@@ -70,6 +70,13 @@ public class OrganizeSoldier {
     public static void shiftHeroesInStack(int startFrom){
         for(int i=startFrom;i<7;i++){
             if(Player.getSingleInstance().getPlayerStack()[i+1] != null){
+                if(i==6){
+                    Player.getSingleInstance().getPlayerStack()[i] = Player.getSingleInstance().getPlayerStack()[i+1];
+                    stackHeroes.get(i).setFill(Player.getSingleInstance().getPlayerStack()[i+1].getImage());
+                    Player.getSingleInstance().getPlayerStack()[7] = null;
+                    stackHeroes.get(7).setFill(Color.BLACK);
+                    break;
+                }
                 Player.getSingleInstance().getPlayerStack()[i] = Player.getSingleInstance().getPlayerStack()[i+1];
                 stackHeroes.get(i).setFill(Player.getSingleInstance().getPlayerStack()[i+1].getImage());
             } else {

@@ -20,8 +20,8 @@ public class Container extends Item {
 
     private Container() {
         this.health=3000;
-        this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\container.jpg"));
-        this.model.setFill(new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\container-model.jpg")));
+        this.image = new ImagePattern(new Image("file:images/container.jpg"));
+        this.model.setFill(new ImagePattern(new Image("file:images/container-model.jpg")));
         lvlUp();
     }
 }

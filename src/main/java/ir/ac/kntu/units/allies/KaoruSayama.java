@@ -20,7 +20,7 @@ public class KaoruSayama extends AllySoldier {
         this.damage = 4500;
         this.health = 4500;
         this.fieldOfView = 2;
-        this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\kaoru.jpg"));
+        this.image = new ImagePattern(new Image("file:images/kaoru.jpg"));
         lvlUp();
     }
 }

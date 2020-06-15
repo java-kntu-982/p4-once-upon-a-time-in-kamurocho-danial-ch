@@ -34,7 +34,7 @@ public class Levels {
     public static void lvl1Round1(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,1,2,12,40,50);
+        spawnEnemy(soldiers1,1,2,8,40,50);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
 
@@ -43,7 +43,7 @@ public class Levels {
     public static void lvl1Round2(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,3,3,5,40,100);
+        spawnEnemy(soldiers1,3,2,6,40,100);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
     }
@@ -130,7 +130,7 @@ public class Levels {
     public static void lvl1Round8(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,1,2,5,40,100);
+        spawnEnemy(soldiers1,4,2,5,40,100);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
     }

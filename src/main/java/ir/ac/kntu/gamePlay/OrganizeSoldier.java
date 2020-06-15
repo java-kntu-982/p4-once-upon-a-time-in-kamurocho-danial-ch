@@ -4,7 +4,6 @@ import ir.ac.kntu.graghic.Design;
 import ir.ac.kntu.graghic.EventHandling;
 import ir.ac.kntu.graghic.Main;
 import ir.ac.kntu.units.allies.AllySoldier;
-import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -20,6 +19,11 @@ public class OrganizeSoldier {
     public static void organize() {
 
         stackHeroes.clear();
+
+        for(AllySoldier soldier:Initializer.heroes){
+            System.out.print(soldier.getClass().getSimpleName()+ " ");
+        }
+
 
         for (int i = 0; i < Initializer.heroes.size(); i++) {
             Rectangle rectangle = new Rectangle();
@@ -43,7 +47,6 @@ public class OrganizeSoldier {
         Main.backButton.setVisible(true);
         Main.root.getChildren().add(heroPoolRectangle);
         Main.root.getChildren().add(heroStackRectangle);
-
 
         for (int i = 0; i < Initializer.heroes.size(); i++) {
             Main.root.getChildren().add(heroPoolRec.get(i));

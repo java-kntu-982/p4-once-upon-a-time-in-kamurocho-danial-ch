@@ -20,7 +20,7 @@ public class RyoTakashima extends AllySoldier {
         this.damage = 3800;
         this.health = 3600;
         this.fieldOfView = 1;
-        this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\ryo.jpg"));
+        this.image = new ImagePattern(new Image("file:images/ryo.jpg"));
         lvlUp();
     }
 }

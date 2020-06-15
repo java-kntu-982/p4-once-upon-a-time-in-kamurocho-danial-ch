@@ -3,6 +3,7 @@ package ir.ac.kntu.gamePlay;
 import ir.ac.kntu.graghic.Design;
 import ir.ac.kntu.graghic.EventHandling;
 import ir.ac.kntu.graghic.Main;
+import ir.ac.kntu.units.Unit;
 import ir.ac.kntu.units.allies.*;
 import ir.ac.kntu.units.enemis.EnemyGroup;
 import ir.ac.kntu.units.enemis.EnemySoldier;
@@ -224,6 +225,18 @@ public class Mission {
         targetChooser = new AnimationTimer() {
             @Override
             public void handle(long l) {
+                for(int i=0;i<8;i++){
+                    if(Player.getSingleInstance().getPlayerStack()[i] != null && Player.getSingleInstance().getPlayerStack()[i].getTarget() != null){
+                        AllySoldier soldier = Player.getSingleInstance().getPlayerStack()[i];
+                        System.out.print(soldier.getClass().getSimpleName() + "/ is attacking " + soldier.isAttacking()+ "/ is attacked " + soldier.isAttacked() + "/ health" + soldier.getHealth());
+                        if(soldier.getTarget() != null){
+                            System.out.println(" and has target");
+                        } else {
+                            System.out.println(" and doesn't have target");
+                        }
+                    }
+
+                }
                 allyTargetChooser();
                 enemyTargetChooser();
                 checkIfMemberIsAttacked();
@@ -339,7 +352,6 @@ public class Mission {
                                 }
 
                             } else if(checkEnemyTarget(soldier)){
-
                                 AllySoldier allySoldier =(AllySoldier)soldier.getTarget();
                                 if(soldier.getAttackRange()*K<
                                         Math.sqrt((Math.pow(soldier.getModel().getX()-allySoldier.getModel().getCenterX(),2))+
@@ -374,6 +386,7 @@ public class Mission {
                             if(!soldier.isAttacking()){
                                 EnemySoldier target = (EnemySoldier) soldier.getTarget();
                                 if(soldier.getAttackRange()*K>= Math.sqrt((Math.pow(soldier.getModel().getCenterX()-target.getModel().getX(),2)+(Math.pow(soldier.getModel().getCenterY()-target.getModel().getY(),2))))){
+                                    System.out.println("1");
                                     soldier.setAttacking(true);
                                     for(int j=0;j<Levels.enemyWave.size();j++){
                                         for(int k=0;k<Levels.enemyWave.get(j).getSoldierGroup().size();k++){
@@ -513,14 +526,14 @@ public class Mission {
                     }
                 }
 
-                /*for(int i=0;i<8;i++){
-                    if(Player.getSingleInstance().getPlayerStack()[i] != null){
+                for(int i=0;i<8;i++){
+                    if(Player.getSingleInstance().getPlayerStack()[i] != null && Player.getSingleInstance().getPlayerStack()[i].getTarget() != null){
                         AllySoldier allySoldier = Player.getSingleInstance().getPlayerStack()[i];
                         allySoldier.setAttacking(false);
                         for(int j=0;j<Levels.enemyWave.size();j++){
                             for(int k=0;k<Levels.enemyWave.get(j).getSoldierGroup().size();k++){
                                 EnemySoldier enemySoldier = Levels.enemyWave.get(j).getSoldierGroup().get(k);
-                                if(allySoldier.getFieldOfView() * M >= Math.sqrt(
+                                if(allySoldier.getAttackRange() * K >= Math.sqrt(
                                         (Math.pow(enemySoldier.getModel().getX() - allySoldier.getModel().getCenterX(), 2)) +
                                                 (Math.pow(enemySoldier.getModel().getY() - allySoldier.getModel().getCenterY(), 2)))){
                                     allySoldier.setAttacking(true);
@@ -529,7 +542,7 @@ public class Mission {
                             }
                         }
                     }
-                }*/
+                }
             }
         };
         checkIfEnemyIsAttacking.start();
@@ -661,6 +674,7 @@ public class Mission {
         Main.organizationButton.setVisible(true);
         Main.trainButton.setVisible(true);
         Main.fortifyHQButton.setVisible(true);
+        Main.unlockButton.setVisible(true);
         Main.exitButton.setVisible(true);
 
         Main.mediaPlayer.play();

@@ -1,6 +1,7 @@
 package ir.ac.kntu.graghic;
 
 import ir.ac.kntu.gamePlay.*;
+import ir.ac.kntu.units.Unit;
 import ir.ac.kntu.units.allies.AllySoldier;
 import ir.ac.kntu.units.items.Item;
 import javafx.application.Platform;
@@ -46,6 +47,12 @@ public class EventHandling {
             UnitUpgrade.upgradeType=2;
             menuButtonClick();
             UnitUpgrade.itemUpgrade();
+        });
+
+        Main.unlockButton.setOnMouseEntered(mouseEvent -> Main.unlockButton.setStyle("-fx-background-color: #357092"));
+        Main.unlockButton.setOnMouseExited(mouseEvent -> Main.unlockButton.setStyle("-fx-background-color: #404040"));
+        Main.unlockButton.setOnMouseClicked(mouseEvent -> {
+            UnlockHero.unlock();
         });
 
         Main.exitButton.setOnMouseEntered(mouseEvent -> Main.exitButton.setStyle("-fx-background-color: #357092"));
@@ -207,6 +214,7 @@ public class EventHandling {
         Main.organizationButton.setVisible(false);
         Main.trainButton.setVisible(false);
         Main.fortifyHQButton.setVisible(false);
+        Main.unlockButton.setVisible(false);
         Main.exitButton.setVisible(false);
     }
 

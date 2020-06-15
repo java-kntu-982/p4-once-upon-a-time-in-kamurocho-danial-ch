@@ -1,5 +1,6 @@
 package ir.ac.kntu.graghic;
 
+import ir.ac.kntu.gamePlay.Initializer;
 import ir.ac.kntu.gamePlay.OrganizeSoldier;
 import ir.ac.kntu.gamePlay.Player;
 import ir.ac.kntu.gamePlay.UnitUpgrade;
@@ -51,12 +52,20 @@ public class Design {
         Main.fortifyHQButton.setTranslateY(190);
         Main.fortifyHQButton.setOpacity(0.8);
 
+        Main.unlockButton.setStyle("-fx-background-color: #404040");
+        Main.unlockButton.setTextFill(Color.WHITE);
+        Main.unlockButton.setPrefWidth(350);
+        Main.unlockButton.setPrefHeight(30);
+        Main.unlockButton.setTranslateX(40);
+        Main.unlockButton.setTranslateY(240);
+        Main.unlockButton.setOpacity(0.8);
+
         Main.exitButton.setStyle("-fx-background-color: #404040");
         Main.exitButton.setTextFill(Color.WHITE);
         Main.exitButton.setPrefWidth(350);
         Main.exitButton.setPrefHeight(30);
         Main.exitButton.setTranslateX(40);
-        Main.exitButton.setTranslateY(240);
+        Main.exitButton.setTranslateY(290);
         Main.exitButton.setOpacity(0.8);
 
         Main.mission1Button.setStyle("-fx-background-color: #404040");
@@ -110,7 +119,7 @@ public class Design {
         coin.setCenterX(810);
         coin.setCenterY(25);
         coin.setRadius(11);
-        coin.setFill(new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\coin image.jpg")));
+        coin.setFill(new ImagePattern(new Image("file:images/coin image.jpg")));
         Main.root.getChildren().add(coin);
 
         Text moneyAmount = new Text();
@@ -247,4 +256,24 @@ public class Design {
             OrganizeSoldier.stackHeroes.get(i).setY(480);
         }
     }
+
+    public static void unlockHeroDesign(Rectangle icon,Rectangle blackRec,Text info){
+
+        icon.setFill(Initializer.heroes.getLast().getImage());
+        icon.setX((Main.scene.getWidth()/2) - 70);
+        icon.setY(150);
+        icon.setHeight(220);
+        icon.setWidth(140);
+
+        blackRec.setWidth(Main.scene.getWidth());
+        blackRec.setHeight(Main.scene.getHeight());
+        blackRec.setFill(Color.BLACK);
+        blackRec.setOpacity(0.8);
+
+        info.setX(240);
+        info.setY(430);
+        info.setFill(Color.RED);
+        info.setFont(Font.font("none", FontWeight.EXTRA_BOLD, FontPosture.REGULAR,35));
+    }
+
 }

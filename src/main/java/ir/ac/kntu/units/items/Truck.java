@@ -16,8 +16,8 @@ public class Truck extends Item {
 
     private Truck() {
         this.health=5000;
-        this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\truck.jpg"));
-        this.getModel().setFill(new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\truck-model.jpg")));
+        this.image = new ImagePattern(new Image("file:images/truck.jpg"));
+        this.getModel().setFill(new ImagePattern(new Image("file:images/truck-model.jpg")));
         this.getModel().setHeight(125);
         lvlUp();
     }

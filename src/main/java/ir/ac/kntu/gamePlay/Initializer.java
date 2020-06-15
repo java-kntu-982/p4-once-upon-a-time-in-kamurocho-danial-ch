@@ -47,6 +47,7 @@ public class Initializer {
         Main.organizationButton.setVisible(true);
         Main.trainButton.setVisible(true);
         Main.fortifyHQButton.setVisible(true);
+        Main.unlockButton.setVisible(true);
         Main.exitButton.setVisible(true);
     }
 }

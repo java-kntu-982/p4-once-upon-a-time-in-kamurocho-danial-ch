@@ -24,14 +24,15 @@ public class Main extends Application {
     public static Button organizationButton = new Button("Organization");
     public static Button trainButton = new Button("Train");
     public static Button fortifyHQButton = new Button("Fortify HQ");
+    public static Button unlockButton = new Button("Unlock New Hero");
     public static Button exitButton = new Button("Exit");
     public static Button mission1Button = new Button("Mission 1");
     public static Button mission2Button = new Button("Mission 2");
     public static Button backButton = new Button("Back");
     public static Button upgradeButton = new Button("Upgrade");
-    public static ImageView menuBg = new ImageView(new Image("file:C:/Users/Asus/Desktop/projects/Java/p4-once-upon-a-time-in-kamurocho-danial-ch/images/applicationImage.jpg"));
-    public static ImageView inGameBg = new ImageView(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\gameBackgroundImage.jpg"));
-    static final String musicFile = "C:/Users/Asus/Desktop/projects/Java/p4-once-upon-a-time-in-kamurocho-danial-ch/sounds/backgound sound.mp3";
+    public static ImageView menuBg = new ImageView(new Image("file:images/applicationImage.jpg"));
+    public static ImageView inGameBg = new ImageView(new Image("file:images/gameBackgroundImage.jpg"));
+    static final String musicFile = "sounds/backgound sound.mp3";
     public static javafx.scene.media.Media sound = new Media(new File(musicFile).toURI().toString());
     public static MediaPlayer mediaPlayer = new MediaPlayer(sound);
 
@@ -41,7 +42,7 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.setTitle("Once Upon a Time in Kamurocho!");
 
-        mediaPlayer.play();
+        //mediaPlayer.play();
 
         root.getChildren().add(menuBg);
         root.getChildren().add(inGameBg);
@@ -50,6 +51,7 @@ public class Main extends Application {
         root.getChildren().add(organizationButton);
         root.getChildren().add(trainButton);
         root.getChildren().add(fortifyHQButton);
+        root.getChildren().add(unlockButton);
         root.getChildren().add(exitButton);
         root.getChildren().add(mission1Button);
         root.getChildren().add(mission2Button);

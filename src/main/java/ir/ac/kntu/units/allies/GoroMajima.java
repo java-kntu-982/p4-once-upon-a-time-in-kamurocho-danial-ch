@@ -21,7 +21,7 @@ public class GoroMajima extends AllySoldier {
         this.damage = 4500;
         this.health = 4000;
         this.fieldOfView = 3;
-        this.image = new ImagePattern(new Image("file:C:\\Users\\Asus\\Desktop\\projects\\Java\\p4-once-upon-a-time-in-kamurocho-danial-ch\\images\\goro.jpg"));
+        this.image = new ImagePattern(new Image("file:images/goro.jpg"));
         lvlUp();
     }
 

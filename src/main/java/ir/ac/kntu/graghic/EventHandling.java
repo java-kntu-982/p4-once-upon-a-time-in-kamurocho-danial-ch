@@ -62,6 +62,7 @@ public class EventHandling {
         Main.mission1Button.setOnMouseEntered(mouseEvent -> Main.mission1Button.setStyle("-fx-background-color: #357092"));
         Main.mission1Button.setOnMouseExited(mouseEvent -> Main.mission1Button.setStyle("-fx-background-color: #404040"));
         Main.mission1Button.setOnMouseClicked(mouseEvent -> {
+            Player.moveFromDefaultToStack();
             menuButtonClick();
             Mission.preparation(1,1);
         });
@@ -69,6 +70,7 @@ public class EventHandling {
         Main.mission2Button.setOnMouseEntered(mouseEvent -> Main.mission2Button.setStyle("-fx-background-color: #357092"));
         Main.mission2Button.setOnMouseExited(mouseEvent -> Main.mission2Button.setStyle("-fx-background-color: #404040"));
         Main.mission2Button.setOnMouseClicked(mouseEvent -> {
+            Player.moveFromDefaultToStack();
             menuButtonClick();
             Mission.preparation(2,1);
         });
@@ -105,6 +107,8 @@ public class EventHandling {
                 Main.root.getChildren().remove(rectangle);
             }
             Main.root.getChildren().remove(UnitUpgrade.chosenItem);
+
+            Player.moveFromStackToDefault();
 
             Initializer.mainMenu();
         });

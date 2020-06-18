@@ -1,7 +1,6 @@
 package ir.ac.kntu.gamePlay;
 
 import ir.ac.kntu.graghic.Main;
-import ir.ac.kntu.units.Soldier;
 import ir.ac.kntu.units.enemis.*;
 import ir.ac.kntu.units.items.Container;
 import ir.ac.kntu.units.items.Item;
@@ -43,7 +42,7 @@ public class Levels {
     public static void lvl1Round2(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,3,2,6,40,100);
+        spawnEnemy(soldiers1,3,2,4,40,100);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
     }
@@ -56,7 +55,7 @@ public class Levels {
         enemyWave.addLast(group1);
 
         LinkedList<EnemySoldier> soldiers2= new LinkedList<>();
-        spawnEnemy(soldiers2,3,2,7,70,300);
+        spawnEnemy(soldiers2,3,2,6,70,300);
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
     }
@@ -69,11 +68,10 @@ public class Levels {
         enemyWave.addLast(group1);
 
         LinkedList<EnemySoldier> soldiers2= new LinkedList<>();
-        spawnEnemy(soldiers2,3,2,3,70,200);
+        spawnEnemy(soldiers2,3,1,3,70,200);
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
 
-        enemyWave.clear();
         LinkedList<EnemySoldier> soldiers3= new LinkedList<>();
         spawnEnemy(soldiers3,2,2,2,40,400);
         EnemyGroup group3 = new EnemyGroup(soldiers3);
@@ -89,7 +87,7 @@ public class Levels {
         enemyWave.addLast(group1);
 
         LinkedList<EnemySoldier> soldiers2= new LinkedList<>();
-        spawnEnemy(soldiers2,3,2,5,70,300);
+        spawnEnemy(soldiers2,3,2,4,70,300);
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
     }
@@ -97,7 +95,7 @@ public class Levels {
     public static void lvl1Round6(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,1,1,8,40,100);
+        spawnEnemy(soldiers1,1,1,6,40,100);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
 
@@ -106,7 +104,6 @@ public class Levels {
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
 
-        enemyWave.clear();
         LinkedList<EnemySoldier> soldiers3= new LinkedList<>();
         spawnEnemy(soldiers3,4,1,2,200,200);
         EnemyGroup group3 = new EnemyGroup(soldiers3);
@@ -117,12 +114,12 @@ public class Levels {
     public static void lvl1Round7(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,2,1,10,40,100);
+        spawnEnemy(soldiers1,2,1,8,40,100);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
 
         LinkedList<EnemySoldier> soldiers2= new LinkedList<>();
-        spawnEnemy(soldiers2,4,1,3,100,250);
+        spawnEnemy(soldiers2,4,1,2,100,250);
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
     }
@@ -130,7 +127,7 @@ public class Levels {
     public static void lvl1Round8(){
         enemyWave.clear();
         LinkedList<EnemySoldier> soldiers1= new LinkedList<>();
-        spawnEnemy(soldiers1,4,2,5,40,100);
+        spawnEnemy(soldiers1,4,2,3,40,100);
         EnemyGroup group1 = new EnemyGroup(soldiers1);
         enemyWave.addLast(group1);
     }
@@ -194,7 +191,6 @@ public class Levels {
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
 
-        enemyWave.clear();
         LinkedList<EnemySoldier> soldiers3= new LinkedList<>();
         spawnEnemy(soldiers3,2,2,2,40,400);
         EnemyGroup group3 = new EnemyGroup(soldiers3);
@@ -227,7 +223,6 @@ public class Levels {
         EnemyGroup group2 = new EnemyGroup(soldiers2);
         enemyWave.addLast(group2);
 
-        enemyWave.clear();
         LinkedList<EnemySoldier> soldiers3= new LinkedList<>();
         spawnEnemy(soldiers3,4,1,2,200,200);
         EnemyGroup group3 = new EnemyGroup(soldiers3);

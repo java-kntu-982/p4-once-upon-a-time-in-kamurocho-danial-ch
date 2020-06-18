@@ -168,6 +168,11 @@ public class Mission {
         toolBarLighten = new AnimationTimer() {
             @Override
             public void handle(long l) {
+                if(Player.getSingleInstance().getPlayerStack()[chosenTarget] == null){
+                    if(chosenTarget>0){
+                        chosenTarget--;
+                    }
+                }
                 for(int i=0;i<8;i++){
                     if(Player.getSingleInstance().getPlayerStack()[i] != null){
                         if(i==chosenTarget){
@@ -225,7 +230,7 @@ public class Mission {
         targetChooser = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                for(int i=0;i<8;i++){
+/*                for(int i=0;i<8;i++){
                     if(Player.getSingleInstance().getPlayerStack()[i] != null && Player.getSingleInstance().getPlayerStack()[i].getTarget() != null){
                         AllySoldier soldier = Player.getSingleInstance().getPlayerStack()[i];
                         System.out.print(soldier.getClass().getSimpleName() + "/ is attacking " + soldier.isAttacking()+ "/ is attacked " + soldier.isAttacked() + "/ health" + soldier.getHealth());
@@ -236,7 +241,7 @@ public class Mission {
                         }
                     }
 
-                }
+                }*/
                 allyTargetChooser();
                 enemyTargetChooser();
                 checkIfMemberIsAttacked();
@@ -386,7 +391,7 @@ public class Mission {
                             if(!soldier.isAttacking()){
                                 EnemySoldier target = (EnemySoldier) soldier.getTarget();
                                 if(soldier.getAttackRange()*K>= Math.sqrt((Math.pow(soldier.getModel().getCenterX()-target.getModel().getX(),2)+(Math.pow(soldier.getModel().getCenterY()-target.getModel().getY(),2))))){
-                                    System.out.println("1");
+                                    //System.out.println("1");
                                     soldier.setAttacking(true);
                                     for(int j=0;j<Levels.enemyWave.size();j++){
                                         for(int k=0;k<Levels.enemyWave.get(j).getSoldierGroup().size();k++){

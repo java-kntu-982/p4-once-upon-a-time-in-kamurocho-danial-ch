@@ -9,6 +9,7 @@ public class Player {
     private boolean lvl2Passed;
     private static Player singleInstance = null;
     private AllySoldier[] playerStack = new AllySoldier[8];
+    private AllySoldier[] defaultStack = new AllySoldier[8];
 
     public static Player getSingleInstance() {
         if(singleInstance == null){
@@ -52,5 +53,29 @@ public class Player {
 
     public void setPlayerStack(AllySoldier[] playerStack) {
         this.playerStack = playerStack;
+    }
+
+    public AllySoldier[] getDefaultStack() {
+        return defaultStack;
+    }
+
+    public void setDefaultStack(AllySoldier[] defaultStack) {
+        this.defaultStack = defaultStack;
+    }
+
+    public static void moveFromDefaultToStack(){
+        for(int i=0;i<8;i++){
+            if(Player.getSingleInstance().getPlayerStack()[i] != null){
+                Player.getSingleInstance().getPlayerStack()[i] = Player.getSingleInstance().getDefaultStack()[i];
+            }
+        }
+    }
+
+    public static void moveFromStackToDefault(){
+        for(int i=0;i<8;i++){
+            if(Player.getSingleInstance().getPlayerStack()[i] != null){
+                Player.getSingleInstance().getDefaultStack()[i] = Player.getSingleInstance().getPlayerStack()[i];
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ package ir.ac.kntu.graghic;
 
 import ir.ac.kntu.gamePlay.Initializer;
 import ir.ac.kntu.gamePlay.OrganizeSoldier;
+import ir.ac.kntu.gamePlay.Player;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -64,6 +65,7 @@ public class Main extends Application {
         Design.designButtons();
         EventHandling.buttonEventHandling();
         OrganizeSoldier.organize();
+        Player.moveFromStackToDefault();
         Design.rectangleDesign();
         Design.moneyDisplay();
 
